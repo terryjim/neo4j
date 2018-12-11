@@ -1,0 +1,20 @@
+#jwt:https://github.com/bfwg/springboot-jwt-starter
+app:
+  name: neo4j
+#jwt:
+ # header: Authorization
+ # expires_in: 86400 # 24 hours
+  #mobile_expires_in: 86400 # 24 hours
+  #secret: queenvictoria
+server:
+ port: 9003
+ tomcat:
+  uri-encoding: UTF-8
+spring:
+  data:
+    neo4j:      
+      uri: bolt://118.31.72.47:7687
+      username: neo4j
+      password: 123456
+
+
