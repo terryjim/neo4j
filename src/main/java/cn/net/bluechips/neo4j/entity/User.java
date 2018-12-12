@@ -23,19 +23,27 @@ import lombok.Data;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true, includeFieldNames = true)*/
-@ApiModel(value = "property", description = "物业公司设置")
-public class Property implements Location{
+@ApiModel(value = "user", description = "用户")
+public class User {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
-	/*@Convert(JpaConverterJson.class)*/
-	@Relationship(type = "of", direction = Relationship.INCOMING)
-	private Set<Building> buildings=new HashSet<Building>();
 
-	public boolean addBuilding(Building building) {
-		if (this.buildings == null)
-			this.buildings = new HashSet<Building>();
-		return this.buildings.add(building);
+	@Relationship(type = "live", direction = Relationship.OUTGOING)
+	private Set<Location> liveLocations;
+	@Relationship(type = "owner", direction = Relationship.OUTGOING)
+	private Set<Location> ownerLocations;
+
+	public boolean addliveLocation(Location location) {
+		if (this.liveLocations == null)
+			this.liveLocations = new HashSet<Location>();
+		return this.liveLocations.add(location);
+	}
+
+	public boolean addOwnerLocation(Location location) {
+		if (this.ownerLocations == null)
+			this.ownerLocations = new HashSet<Location>();
+		return this.ownerLocations.add(location);
 	}
 }
